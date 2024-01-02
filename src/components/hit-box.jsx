@@ -7,9 +7,6 @@ export function HitBox() {
   const incrementFails = useStore((state) => state.incrementFails);
   const status = useStore((state) => state.status);
   
-  const setStatus = useStore((state) => state.setStatus);
-  const resetScore = useStore((state) => state.resetScore);
-  
   const [ref1] = usePlane(() => ({
     rotation: [0, 0, 0],
     position: [0, 0, -1],
@@ -43,10 +40,6 @@ export function HitBox() {
   function hit() {
     if (status === 'playing') {
       incrementFails()
-    }
-    if(status === 'initial'){
-      resetScore()
-      setStatus('playing')
     }
   }
   return (

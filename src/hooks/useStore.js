@@ -13,6 +13,8 @@ export const useStore = create(persist((set) => ({
   positionsY: [0.3, -0.3],
   color: "#00ff00",
   isBestScore: false,
+  modelLoaded: false,
+  setModelLoaded: (modelLoaded) => set(() => ({ modelLoaded })),
   setColor: (color) => set(() => ({ color })),
   addCube: (x, y) =>
     set((state) => ({

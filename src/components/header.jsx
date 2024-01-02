@@ -2,18 +2,27 @@ import { useStore } from "../hooks/useStore";
 import { TimerIcon } from "./timer-svg";
 
 export default function Header() {
-  const bestScore = useStore((state) => state.bestScore);
   const score = useStore((state) => state.score);
   const timer = useStore((state) => state.timer);
   const hits = useStore((state) => state.hits);
   const accuracy = useStore((state) => state.accuracy);
+  const reset = useStore((state) => state.reset);
+  const setStatus = useStore((state) => state.setStatus);
+  const status = useStore((state) => state.status);
+
+  const reiniciar = () =>{
+    reset();
+    setStatus("initial");
+  }
+  const cambiarMira = () =>{
+    setStatus("custom");
+  }
   return (
     <div className="absolute top-0 flex flex-row items-start justify-between w-full gap-4 px-4 pt-2 bg-gradient-to-b from-black/50 to-transparent">
-      <div className="flex flex-col">
-        <span className="w-40 text-sm text-left uppercase">puntuación más alta</span>
-        <span className="w-40 px-2 py-1 text-xl font-semibold text-center border border-emerald-800 bg-gradient-to-b from-emerald-800 to-transparent">
-          {bestScore}
-        </span>
+      <div className="flex flex-row w-40 py-2">
+      {status === "playing" && <button onClick={reiniciar} className="px-2 py-1 text-sm border border-neutral-400 hover:bg-neutral-200 hover:text-neutral-800 hover:border-neutral-800">Reiniciar partida</button>}
+        {status === "initial" && <button onClick={cambiarMira} className="px-2 py-1 text-sm border border-neutral-400 hover:bg-neutral-200 hover:text-neutral-800 hover:border-neutral-800">Cambiar mira</button>}
+        {status === "custom" && <button onClick={reiniciar} className="px-2 py-1 text-sm border border-neutral-400 hover:bg-neutral-200 hover:text-neutral-800 hover:border-neutral-800">Guardar mira</button>}
       </div>
       <div className="flex flex-row items-end justify-center gap-4 p-4">
         <div className="flex flex-col w-48 gap-1">

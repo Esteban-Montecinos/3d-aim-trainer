@@ -1,16 +1,17 @@
+import { useEffect } from "react";
 import { Physics } from "@react-three/cannon";
 import { Canvas } from "@react-three/fiber";
 import { HitBox } from "./components/hit-box";
 import { Pov } from "./components/pov";
 import { Crosshair } from "./components/crosshair";
 import { Esferas } from "./components/esferas";
-import { Mapa } from "./components/mapa";
 import Header from "./components/header";
 import { useStore } from "./hooks/useStore";
-import { useEffect } from "react";
 import Footer from "./components/footer";
 import Start from "./components/start";
 import confetti from "canvas-confetti";
+import { Mapa } from "./components/mapa";
+import MapaLoader from "./components/mapa-loader";
 
 function App() {
   const setTimer = useStore((state) => state.setTimer);
@@ -23,6 +24,7 @@ function App() {
   const setBestScore = useStore((state) => state.setBestScore);
   const isBestScore = useStore((state) => state.isBestScore);
   const setIsBestScore = useStore((state) => state.setIsBestScore);
+  const modelLoaded = useStore((state) => state.modelLoaded);
 
   useEffect(() => {
     let interval;
@@ -40,26 +42,35 @@ function App() {
     setBestScore();
     setStatus("initial");
   }
-  if(isBestScore){
-    confetti()
-    setIsBestScore(false)
+  if (isBestScore) {
+    confetti();
+    setIsBestScore(false);
   }
   return (
     <>
       <Canvas>
         <ambientLight intensity={5.5} />
-        {status === "playing" && <ambientLight intensity={7} />}
+        {status === "playing" && <ambientLight intensity={8} />}
         <Pov />
         <Physics>
-          <Esferas />
-          <HitBox />
+          {modelLoaded && (
+            <>
+              <Esferas />
+              <HitBox />
+            </>
+          )}
           <Mapa />
         </Physics>
       </Canvas>
+      {modelLoaded && (
+            <>
       <Header />
-      {status === "initial" && <Start />}
+      <Start />
       <Crosshair />
       <Footer />
+      </>
+          )}
+      {modelLoaded === false && (<MapaLoader/>)}
     </>
   );
 }
