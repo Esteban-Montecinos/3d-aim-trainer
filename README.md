@@ -1,8 +1,7 @@
-# React + Vite
+# React + Vite + three.js
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 3D Aim Trainer 🚀 | el mejor juego para probar y practicar tu puntería
 
-Currently, two official plugins are available:
+![ingame](https://github.com/Esteban-Montecinos/3d-aim-trainer/assets/81337401/99ecfe4c-737e-43b0-bdd0-a608c142763a)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Modelo de mapa: [Kerem Kavalci](https://sketchfab.com/Keremz)
