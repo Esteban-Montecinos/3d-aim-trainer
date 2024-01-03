@@ -51,6 +51,7 @@ function App() {
       <Canvas>
         <ambientLight intensity={5.5} />
         {status === "playing" && <ambientLight intensity={8} />}
+        <directionalLight position={[2, 2, 2]} />
         <Pov />
         <Physics>
           {modelLoaded && (
