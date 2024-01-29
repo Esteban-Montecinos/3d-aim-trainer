@@ -2,8 +2,10 @@ import { usePlane } from "@react-three/cannon";
 import { Texture } from "../images/textures";
 import { MeshBasicMaterial } from "three";
 import { useStore } from "../hooks/useStore";
+import { useControls } from "../hooks/useControls";
 
 export function HitBox() {
+  const setIsShooting = useControls((state) => state.setIsShooting);
   const incrementFails = useStore((state) => state.incrementFails);
   const status = useStore((state) => state.status);
   
@@ -29,9 +31,9 @@ export function HitBox() {
   }));
   const [ref6] = usePlane(() => ({
     rotation: [0, Math.PI, 0],
-    position: [0, 0, 7],
+    position: [0, 0, 10],
   }));
-  Texture.repeat.set(7, 16);
+  Texture.repeat.set(6, 6);
   const transparentMaterial = new MeshBasicMaterial({
     transparent: true,
     opacity: 0,
@@ -40,28 +42,37 @@ export function HitBox() {
   function hit() {
     if (status === 'playing') {
       incrementFails()
+      setIsShooting(true);
+      setTimeout(() => {
+        setIsShooting(false);
+      }, "100");
     }
+
   }
   return (
     <group>
       <mesh ref={ref1} onClick={hit} material={transparentMaterial}>
         <planeGeometry attach="geometry" args={[12, 12]} />
       </mesh>
-      <mesh ref={refPiso} onClick={hit}>
-        <planeGeometry attach="geometry" args={[10, 10]} material={transparentMaterial}/>
+      <mesh ref={refPiso} onClick={hit} material={transparentMaterial}>
+        <planeGeometry attach="geometry" args={[12, 12]} />
+        
       </mesh>
-      <mesh ref={ref3} onClick={hit} material={transparentMaterial}>
-        <planeGeometry attach="geometry" args={[10, 10]} />
+      <mesh ref={ref3} onClick={hit} material={transparentMaterial} >
+        <planeGeometry attach="geometry" args={[12, 12]} />
+        
       </mesh>
-      <mesh ref={ref4} onClick={hit} material={transparentMaterial}>
-        <planeGeometry attach="geometry" args={[10, 10]} />
+      <mesh ref={ref4} onClick={hit} material={transparentMaterial} >
+        <planeGeometry attach="geometry" args={[12, 12]} />
+        
       </mesh>
-      <mesh ref={refTecho} onClick={hit} material={transparentMaterial}>
-        <planeGeometry attach="geometry" args={[10, 10]} />
+      <mesh ref={refTecho} onClick={hit} material={transparentMaterial} >
+        <planeGeometry attach="geometry" args={[12, 12]} />
+        
       </mesh>
       <mesh ref={ref6} onClick={hit}>
-        <planeGeometry attach="geometry" args={[10, 10]} />
-        <meshStandardMaterial attach="material" map={Texture} />
+        <planeGeometry attach="geometry" args={[12, 12]} />
+        <meshStandardMaterial attach="material" map={Texture} color="DimGray" />
       </mesh>
     </group>
   );
