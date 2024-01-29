@@ -65,8 +65,8 @@ export function Model() {
                     <group name="Object_90" rotation={[-Math.PI / 2,0, 0]} scale={100} />
                     <group name="Object_92" rotation={[-Math.PI / 2,0, 0]} scale={100} />
                     <group name="Object_94" rotation={[-Math.PI / 2,0, 0]} scale={100} />
-                    <skinnedMesh name="Object_9" geometry={nodes.Object_9.geometry} material={materials.arms} skeleton={nodes.Object_9.skeleton} />
-                    <skinnedMesh name="Object_91" geometry={nodes.Object_91.geometry} material={materials.Material} skeleton={nodes.Object_91.skeleton} />
+                    <skinnedMesh name="Object_9" geometry={nodes.Object_9.geometry} material={materials.arms} skeleton={nodes.Object_9.skeleton} material-color="Gray"/>
+                    <skinnedMesh name="Object_91" geometry={nodes.Object_91.geometry} material={materials.Material} skeleton={nodes.Object_91.skeleton}  material-color="DimGray"/>
                     <skinnedMesh name="Object_93" geometry={nodes.Object_93.geometry} material={materials.Material} skeleton={nodes.Object_93.skeleton} />
                     <skinnedMesh name="Object_95" geometry={nodes.Object_95.geometry} material={materials.Material} skeleton={nodes.Object_95.skeleton} />
                   </group>

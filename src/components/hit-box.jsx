@@ -40,7 +40,7 @@ export function HitBox() {
   });
 
   function hit() {
-    if (status === 'playing') {
+    if (status === 'playing' || status === "freestyle") {
       incrementFails()
       setIsShooting(true);
       setTimeout(() => {

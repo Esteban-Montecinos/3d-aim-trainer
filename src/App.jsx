@@ -13,7 +13,6 @@ import confetti from "canvas-confetti";
 import { Mapa } from "./components/mapa";
 import MapaLoader from "./components/mapa-loader";
 import { Model } from "./components/Pistol";
-import { Sky } from "@react-three/drei";
 
 function App() {
   const setTimer = useStore((state) => state.setTimer);
@@ -32,14 +31,24 @@ function App() {
     let interval;
     if (status === "playing") {
       interval = setInterval(() => {
-        setTimer(0.01);
+        setTimer(0.01,0);
         setScore(1);
         setAccuracy();
       }, 10);
     }
+    if (status === "freestyle") {
+      setTimer(20,0);
+      interval = setInterval(() => {
+        setTimer(0,0.01);
+        setScore(1);
+        setAccuracy();
+      }, 10);
+    }
+
     return () => clearInterval(interval);
   }, [status]);
-  if (timer <= 0) {
+
+  if (timer < 0) {
     reset();
     setBestScore();
     setStatus("initial");
@@ -51,32 +60,31 @@ function App() {
   return (
     <>
       <Canvas>
-      <Sky sunPosition={[1,2,1]}/>
         <ambientLight intensity={5.5} />
-        {status === "playing" && <ambientLight intensity={1.5}/>}
-        <directionalLight intensity={0.5} position={[1,5,1]}/>
-        <directionalLight intensity={0.2} position={[-1,5,1]}/>
+        {status === "playing" && <ambientLight intensity={1.5} />}
+        <directionalLight intensity={1.5} position={[2, 4, 1]} />
+        <directionalLight intensity={1} position={[-2, 4, 1]} />
         <Pov />
         <Physics>
           {modelLoaded && (
             <>
               <Boxs />
               <HitBox />
-              <Model/>
+              <Model />
             </>
           )}
           <Mapa />
         </Physics>
       </Canvas>
       {modelLoaded && (
-            <>
-      <Header />
-      <Start />
-      <Crosshair />
-      <Footer />
-      </>
-          )}
-      {modelLoaded === false && (<MapaLoader/>)}
+        <>
+          <Header />
+          <Start />
+          <Crosshair />
+          <Footer />
+        </>
+      )}
+      {modelLoaded === false && <MapaLoader />}
     </>
   );
 }

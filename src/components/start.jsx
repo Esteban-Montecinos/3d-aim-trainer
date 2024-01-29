@@ -14,6 +14,12 @@ export default function Start() {
       setStatus("playing");
     }
   };
+  const handleStartFree = () => {
+    if (status === "initial") {
+      resetScore();
+      setStatus("freestyle");
+    }
+  };
 
   return (
     <div className="absolute left-0 flex flex-col items-center justify-center w-full top-36 h-fit">
@@ -38,7 +44,13 @@ export default function Start() {
           onClick={handleStart}
           className="px-2 py-1 text-sm uppercase border border-neutral-400 hover:bg-neutral-200 hover:text-neutral-800 hover:border-neutral-800"
         >
-          Comenzar
+          Contra el tiempo
+        </button>
+        <button
+          onClick={handleStartFree}
+          className="px-2 py-1 text-sm uppercase border border-neutral-400 hover:bg-neutral-200 hover:text-neutral-800 hover:border-neutral-800"
+        >
+          Calentamiento sin tiempo
         </button>
       </div>
     </div>
