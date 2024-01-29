@@ -50,7 +50,7 @@ export const useStore = create(persist((set) => ({
         },
       ],
     })),
-  setTimer: (lessTimer, addTimer) => set((state) => ({ timer: state.timer - lessTimer + addTimer })),
+  setTimer: (lessTimer) => set((state) => ({ timer: state.timer - lessTimer })),
   incrementHits: () => set((state) => ({ hits: state.hits + 1 })),
   incrementFails: () => set((state) => ({ fails: state.fails + 1 })),
   setAccuracy: () =>

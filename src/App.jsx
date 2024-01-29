@@ -31,15 +31,13 @@ function App() {
     let interval;
     if (status === "playing") {
       interval = setInterval(() => {
-        setTimer(0.01,0);
+        setTimer(0.01);
         setScore(1);
         setAccuracy();
       }, 10);
     }
     if (status === "freestyle") {
-      setTimer(20,0);
       interval = setInterval(() => {
-        setTimer(0,0.01);
         setScore(1);
         setAccuracy();
       }, 10);
@@ -61,9 +59,11 @@ function App() {
     <>
       <Canvas>
         <ambientLight intensity={5.5} />
-        {status === "playing" && <ambientLight intensity={1.5} />}
+        <ambientLight intensity={0.5} />
+        {(status === "playing" || status === "freestyle") && <ambientLight intensity={1.5} />}
         <directionalLight intensity={1.5} position={[2, 4, 1]} />
-        <directionalLight intensity={1} position={[-2, 4, 1]} />
+        <directionalLight intensity={1.5} position={[-2, 4, 1]} />
+        
         <Pov />
         <Physics>
           {modelLoaded && (

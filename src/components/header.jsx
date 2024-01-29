@@ -44,7 +44,7 @@ export default function Header() {
                 : "text-neutral-200"
             } w-full py-1 text-3xl font-bold text-center `}
           >
-            {(status === "initial" || status === "custom") ? "--.--":Math.round((timer / 1) * 100) / 100}
+            {status === "playing" ? Math.round((timer / 1) * 100) / 100 : "--.--"}
           </span>
         </div>
         <div className="flex flex-col w-48 gap-1">
