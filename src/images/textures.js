@@ -1,11 +1,11 @@
 import { TextureLoader,RepeatWrapping, NearestFilter } from "three";
-import { TextureImg, SphereImg } from "./images.js";
+import { BoxImg } from "./images.js";
 
-const Texture = new TextureLoader().load(TextureImg);
-const SphereTexture = new TextureLoader().load(SphereImg);
+const Texture = new TextureLoader().load(BoxImg);
+const BoxTexture = new TextureLoader().load(BoxImg);
 
 
 Texture.wrapS = Texture.wrapT = RepeatWrapping;
 Texture.magFilter = NearestFilter
 
-export { Texture, SphereTexture };
+export { Texture, BoxTexture };
