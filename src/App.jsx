@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { HitBox } from "./components/hit-box";
 import { Pov } from "./components/pov";
 import { Crosshair } from "./components/crosshair";
-import { Esferas } from "./components/esferas";
+import { Boxs } from "./components/boxs";
 import Header from "./components/header";
 import { useStore } from "./hooks/useStore";
 import Footer from "./components/footer";
@@ -12,6 +12,8 @@ import Start from "./components/start";
 import confetti from "canvas-confetti";
 import { Mapa } from "./components/mapa";
 import MapaLoader from "./components/mapa-loader";
+import { Model } from "./components/Pistol";
+import { Sky } from "@react-three/drei";
 
 function App() {
   const setTimer = useStore((state) => state.setTimer);
@@ -49,15 +51,18 @@ function App() {
   return (
     <>
       <Canvas>
+      <Sky sunPosition={[1,2,1]}/>
         <ambientLight intensity={5.5} />
-        {status === "playing" && <ambientLight intensity={8} />}
-        <directionalLight position={[2, 2, 2]} />
+        {status === "playing" && <ambientLight intensity={1.5}/>}
+        <directionalLight intensity={0.5} position={[1,5,1]}/>
+        <directionalLight intensity={0.2} position={[-1,5,1]}/>
         <Pov />
         <Physics>
           {modelLoaded && (
             <>
-              <Esferas />
+              <Boxs />
               <HitBox />
+              <Model/>
             </>
           )}
           <Mapa />
