@@ -52,7 +52,7 @@ export function Model() {
     <group>
 <mesh ref={ref} />
     <group ref={group} dispose={null}>
-      <group name="Sketchfab_Scene"  scale={0.4} position={[0, -0.11,-0.03]} rotation={[0, Math.PI, 0]}>
+      <group name="Sketchfab_Scene"  scale={0.4} position={[0.03, -0.11,-0.03]} rotation={[0, Math.PI, 0]}>
         <group name="Sketchfab_model" rotation={[-Math.PI / 2,0, 0]}>
           <group name="3ab9f780f2294ec8ba398c31f25c6b54fbx" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
             <group name="Object_2" >
